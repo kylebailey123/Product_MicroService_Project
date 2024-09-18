@@ -1,0 +1,18 @@
+spring:
+  application:
+    name : config-server-application
+  profiles:
+    active: native
+  config:
+    import: classpath:configurations/eureka-common.yaml # Import the common configuration for Eureka
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/configurations
+#  security: TODO - add security later
+#    user:
+#      name: user
+#      password: password
+server:
+  port: 8888

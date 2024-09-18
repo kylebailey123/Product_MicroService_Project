@@ -1,0 +1,24 @@
+spring:
+  profiles:
+    active: native
+  config:
+    import:
+      - "classpath:/configurations/eureka-common.yaml"
+  cloud:
+    gateway:
+      routes:
+        # Product service configuration
+        - id: product-application
+          uri: lb://product-application
+          predicates:
+            - Path=/product/**
+          # Invensory service configuration
+        - id: inventory-application
+          uri: lb://inventory-application
+          predicates:
+            - Path=/inventory/**
+          # Catalog service configuration
+        - id: catalog-application
+          uri: lb://catalog-application
+          predicates:
+            - Path=/catalog/**

@@ -1,0 +1,8 @@
+package com.kyle.productapplication.config;
+
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class Config {
+
+}

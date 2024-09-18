@@ -1,0 +1,42 @@
+spring:
+  profiles:
+    active: native
+  config:
+    import:
+      - "classpath:/configurations/eureka-common.yaml"
+
+management:
+  health:
+    circuit-breakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+  info:
+    app:
+      name: Product Service
+      description: Product Service
+      version: 1.0.0
+      contact:
+        name: Kyle
+
+resilience4j:
+  circuit-breaker:
+    instances:
+      product-service:
+        register-health-indicator: true
+        failure-rate-threshold: 50
+        minimum-number-of-calls: 5
+        permitted-number-of-calls-in-half-open-state: 3
+    metrics:
+      enabled: true
+
+  retry:
+    instances:
+      product-service-retry:
+        max-attempts: 6
+        wait-duration: 1000ms
